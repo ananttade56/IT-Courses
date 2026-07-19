@@ -4,17 +4,17 @@ const RoadmapAndPlacement = () => {
   return (
     <section className="py-16 bg-white border-b border-gray-100">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         <div className="grid lg:grid-cols-2 gap-12">
-          
+
           {/* Left: Your Learning Roadmap */}
-          <div>
+          <div className="min-w-0">
             <h2 className="text-2xl font-bold text-gray-900 mb-8">Your Learning Roadmap</h2>
-            <div className="bg-gray-50 rounded-xl p-8 border border-gray-100">
-              <div className="flex justify-between items-center relative">
+            <div className="bg-gray-50 rounded-xl p-6 sm:p-8 border border-gray-100 overflow-x-auto custom-scrollbar">
+              <div className="flex justify-between items-center relative min-w-[700px] lg:min-w-full px-2">
                 {/* Connecting Line */}
-                <div className="absolute left-0 right-0 h-0.5 bg-blue-100 top-1/2 -translate-y-1/2 z-0 hidden sm:block"></div>
-                
+                <div className="absolute left-6 right-6 h-0.5 bg-blue-200 top-6 z-0"></div>
+
                 {/* Steps */}
                 {[
                   { icon: '📝', label: 'Enroll', color: 'bg-green-100 text-green-600' },
@@ -36,7 +36,7 @@ const RoadmapAndPlacement = () => {
           </div>
 
           {/* Right: Our Placement Record */}
-          <div>
+          <div className="min-w-0">
             <h2 className="text-2xl font-bold text-gray-900 mb-8">Our Placement Record</h2>
             <div className="bg-white rounded-xl p-6 sm:p-8 border border-gray-100 shadow-sm">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
@@ -57,18 +57,20 @@ const RoadmapAndPlacement = () => {
                   <p className="text-xs text-gray-500">Average Package</p>
                 </div>
               </div>
-              
-              <div className="flex flex-wrap justify-between gap-4 items-center pt-6 border-t border-gray-100 opacity-60 grayscale">
-                <div className="text-xl font-bold font-serif text-blue-800">TCS</div>
-                <div className="text-xl font-bold font-sans text-blue-500">Infosys</div>
-                <div className="text-xl font-bold font-serif text-blue-600">Capgemini</div>
-                <div className="text-xl font-bold font-sans text-purple-700">Wipro</div>
-                <div className="text-xl font-bold font-sans text-black">accenture</div>
-                <div className="text-xl font-bold font-sans text-blue-900">HCL</div>
+
+              <div className="pt-6 border-t border-gray-100 opacity-60 grayscale overflow-x-auto custom-scrollbar pb-2">
+                <div className="flex justify-between gap-8 items-center min-w-[600px] lg:min-w-full px-2">
+                  <div className="text-xl font-bold font-serif text-blue-800">TCS</div>
+                  <div className="text-xl font-bold font-sans text-blue-500">Infosys</div>
+                  <div className="text-xl font-bold font-serif text-blue-600">Capgemini</div>
+                  <div className="text-xl font-bold font-sans text-purple-700">Wipro</div>
+                  <div className="text-xl font-bold font-sans text-black">accenture</div>
+                  <div className="text-xl font-bold font-sans text-blue-900">HCL</div>
+                </div>
               </div>
             </div>
           </div>
-          
+
         </div>
 
       </div>

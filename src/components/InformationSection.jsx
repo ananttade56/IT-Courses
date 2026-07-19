@@ -4,9 +4,9 @@ const InformationSection = () => {
   return (
     <section className="py-16 bg-gray-50 border-b border-gray-100">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          
+
+        <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+
           {/* Free Resources */}
           <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm flex flex-col h-full">
             <h3 className="text-lg font-bold text-gray-900 mb-6">Free Resources</h3>
@@ -48,9 +48,9 @@ const InformationSection = () => {
                 </div>
               </div>
             </div>
-            <button className="w-full mt-6 py-2 border border-blue-200 text-blue-600 rounded-md text-sm font-semibold hover:bg-blue-50">
+            {/* <button className="w-full mt-6 py-2 border border-blue-200 text-blue-600 rounded-md text-sm font-semibold hover:bg-blue-50">
               View All Resources
-            </button>
+            </button> */}
           </div>
 
           {/* Upcoming Batches */}
@@ -59,103 +59,29 @@ const InformationSection = () => {
             <div className="space-y-4 flex-grow">
               <div className="border border-gray-100 p-3 rounded-lg flex justify-between items-center bg-gray-50">
                 <div>
-                  <h4 className="text-sm font-bold text-gray-900">MERN Stack Development</h4>
-                  <p className="text-xs text-gray-500">20th May 2025 • 10:00 AM - 12:00 PM</p>
+                  <h4 className="text-sm font-bold text-gray-900">Java Fullstack Developer </h4>
+                  <p className="text-xs text-gray-500">To be informed soon...</p>
                 </div>
                 <span className="bg-red-100 text-red-600 text-[10px] font-bold px-2 py-1 rounded">11 Seats Left</span>
               </div>
               <div className="border border-gray-100 p-3 rounded-lg flex justify-between items-center bg-gray-50">
                 <div>
-                  <h4 className="text-sm font-bold text-gray-900">React.js Development</h4>
-                  <p className="text-xs text-gray-500">1st June 2025 • 10:00 AM - 12:00 PM</p>
+                  <h4 className="text-sm font-bold text-gray-900">Data Science</h4>
+                  <p className="text-xs text-gray-500">To be informed soon...</p>
                 </div>
                 <span className="bg-orange-100 text-orange-600 text-[10px] font-bold px-2 py-1 rounded">15 Seats Left</span>
               </div>
               <div className="border border-gray-100 p-3 rounded-lg flex justify-between items-center bg-gray-50">
                 <div>
                   <h4 className="text-sm font-bold text-gray-900">Python Programming</h4>
-                  <p className="text-xs text-gray-500">5th June 2025 • 7:00 PM - 9:00 PM</p>
+                  <p className="text-xs text-gray-500">To be informed soon...</p>
                 </div>
                 <span className="bg-green-100 text-green-600 text-[10px] font-bold px-2 py-1 rounded">20 Seats Left</span>
               </div>
             </div>
-            <button className="w-full mt-6 py-2 border border-blue-200 text-blue-600 rounded-md text-sm font-semibold hover:bg-blue-50">
+            {/* <button className="w-full mt-6 py-2 border border-blue-200 text-blue-600 rounded-md text-sm font-semibold hover:bg-blue-50">
               View All Batches
-            </button>
-          </div>
-
-          {/* Student Projects */}
-          <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm flex flex-col h-full">
-            <h3 className="text-lg font-bold text-gray-900 mb-6">Student Projects</h3>
-            <div className="space-y-4 flex-grow">
-              <div className="flex items-center">
-                <div className="w-16 h-12 bg-blue-100 rounded mr-3 overflow-hidden">
-                  <div className="w-full h-full bg-gradient-to-r from-cyan-500 to-blue-500 opacity-80"></div>
-                </div>
-                <div>
-                  <h4 className="text-sm font-bold text-gray-900">E-Commerce Website</h4>
-                  <p className="text-xs text-gray-500">MERN Stack</p>
-                </div>
-              </div>
-              <div className="flex items-center">
-                <div className="w-16 h-12 bg-purple-100 rounded mr-3 overflow-hidden">
-                  <div className="w-full h-full bg-gradient-to-r from-purple-500 to-indigo-500 opacity-80"></div>
-                </div>
-                <div>
-                  <h4 className="text-sm font-bold text-gray-900">Task Management App</h4>
-                  <p className="text-xs text-gray-500">React.js</p>
-                </div>
-              </div>
-              <div className="flex items-center">
-                <div className="w-16 h-12 bg-green-100 rounded mr-3 overflow-hidden flex items-center justify-center">
-                  <svg className="w-6 h-6 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd"></path></svg>
-                </div>
-                <div>
-                  <h4 className="text-sm font-bold text-gray-900">AI Chat Application</h4>
-                  <p className="text-xs text-gray-500">Python</p>
-                </div>
-              </div>
-            </div>
-            <button className="w-full mt-6 py-2 border border-blue-200 text-blue-600 rounded-md text-sm font-semibold hover:bg-blue-50">
-              View All Projects
-            </button>
-          </div>
-
-          {/* Latest Blog */}
-          <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm flex flex-col h-full">
-            <h3 className="text-lg font-bold text-gray-900 mb-6">Latest Blog</h3>
-            <div className="space-y-4 flex-grow">
-              <div className="flex items-start">
-                <div className="w-12 h-12 bg-blue-900 text-blue-400 rounded-lg flex items-center justify-center mr-3 flex-shrink-0">
-                   <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zm0 7.5L4.5 7 12 4.5l7.5 2.5-7.5 2.5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-                </div>
-                <div>
-                  <h4 className="text-sm font-bold text-gray-900 leading-tight">Top 10 React Interview Questions in 2025</h4>
-                  <p className="text-[10px] text-gray-400 mt-1">May 10, 2025</p>
-                </div>
-              </div>
-              <div className="flex items-start">
-                <div className="w-12 h-12 bg-blue-100 overflow-hidden rounded-lg mr-3 flex-shrink-0">
-                  <div className="w-full h-full bg-cover bg-center" style={{ backgroundImage: 'linear-gradient(to right, #4facfe 0%, #00f2fe 100%)' }}></div>
-                </div>
-                <div>
-                  <h4 className="text-sm font-bold text-gray-900 leading-tight">How to Become a Full Stack Developer</h4>
-                  <p className="text-[10px] text-gray-400 mt-1">May 5, 2025</p>
-                </div>
-              </div>
-              <div className="flex items-start">
-                <div className="w-12 h-12 bg-blue-800 text-blue-300 rounded-lg flex items-center justify-center mr-3 flex-shrink-0">
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                </div>
-                <div>
-                  <h4 className="text-sm font-bold text-gray-900 leading-tight">Top IT Skills to Learn in 2025</h4>
-                  <p className="text-[10px] text-gray-400 mt-1">April 28, 2025</p>
-                </div>
-              </div>
-            </div>
-            <button className="w-full mt-6 py-2 border border-blue-200 text-blue-600 rounded-md text-sm font-semibold hover:bg-blue-50">
-              Read All Blogs
-            </button>
+            </button> */}
           </div>
 
         </div>

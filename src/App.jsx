@@ -12,7 +12,7 @@ import Footer from './components/Footer';
 
 function App() {
   return (
-    <div className="min-h-screen flex flex-col font-sans bg-gray-50">
+    <div className="min-h-screen flex flex-col font-sans bg-gray-50 overflow-x-hidden w-full">
       <Navbar />
       <main className="flex-grow">
         <Header />
@@ -20,7 +20,7 @@ function App() {
         <Courses />
         <RoadmapAndPlacement />
         <Testimonials />
-        <Trainers />
+        {/* <Trainers /> */}
         <InformationSection />
         <FaqAndContact />
       </main>

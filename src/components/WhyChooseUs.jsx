@@ -71,10 +71,10 @@ const WhyChooseUs = () => {
   return (
     <section className="py-16 bg-white border-b border-gray-100">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-gray-900 inline-block relative">
-            Why Choose TechEdu?
+            Why Choose CSR Candid ?
             <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-blue-600 rounded"></div>
           </h2>
         </div>

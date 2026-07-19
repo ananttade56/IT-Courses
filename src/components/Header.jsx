@@ -5,22 +5,22 @@ const Header = () => {
     <section className="bg-gradient-to-br from-blue-50 via-white to-purple-50 pt-20 pb-16 overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          
+
           {/* Left Content */}
           <div className="max-w-2xl">
             <div className="inline-flex items-center px-4 py-2 rounded-full bg-blue-100 text-blue-700 font-medium text-sm mb-6">
               <span className="mr-2">🏆</span> #1 IT Training Institute
             </div>
-            
+
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight mb-6 tracking-tight">
               Learn IT Skills.<br />
               Build <span className="text-blue-600">Your Future.</span>
             </h1>
-            
+
             <p className="text-lg text-gray-600 mb-8 max-w-xl">
               Industry-focused IT courses with live projects, expert trainers and 100% placement assistance.
             </p>
-            
+
             <div className="flex flex-col sm:flex-row gap-4 mb-12">
               <a href="#courses" className="bg-blue-700 text-white px-8 py-3.5 rounded-md font-semibold text-center hover:bg-blue-800 transition shadow-lg">
                 Explore Courses
@@ -29,7 +29,7 @@ const Header = () => {
                 Book Free Demo
               </a>
             </div>
-            
+
             {/* Stats Row */}
             <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-4 sm:gap-8 border-t border-gray-200 pt-8">
               <div className="flex flex-col">
@@ -62,29 +62,29 @@ const Header = () => {
               </div>
             </div>
           </div>
-          
+
           {/* Right Image / Graphic */}
-          <div className="relative hidden lg:block h-[500px]">
+          <div className="relative h-[350px] sm:h-[400px] lg:h-[500px] mt-12 lg:mt-0">
             {/* Abstract Background Shapes */}
             <div className="absolute top-0 right-0 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob"></div>
             <div className="absolute top-0 right-32 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000"></div>
-            
+
             {/* Image Frame */}
             <div className="absolute top-0 right-0 w-full max-w-lg h-full bg-transparent flex flex-col items-center justify-end relative">
-               <img src="/asset/Student.png" alt="Students" className="w-full h-auto max-h-full object-contain relative z-10" />
-               
-               {/* Floating Badges */}
-               <div className="absolute top-10 -left-6 bg-white px-4 py-3 rounded-lg shadow-xl border border-gray-100 flex items-center -rotate-2">
-                 <div className="bg-yellow-100 p-2 rounded-full mr-3">
-                   <svg className="w-5 h-5 text-yellow-600" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                 </div>
-                 <div>
-                   <p className="text-xs text-gray-500 font-semibold">Industry</p>
-                   <p className="text-sm font-bold text-gray-900">Expert Trainers</p>
-                 </div>
-               </div>
-               
-               <div className="absolute bottom-20 -right-6 bg-white px-4 py-3 rounded-lg shadow-xl border border-gray-100 flex items-center -rotate-2">
+              <img src="/asset/Student.png" alt="Students" className="w-full h-auto max-h-full object-contain relative z-10" />
+
+              {/* Floating Badges */}
+              <div className="absolute top-10 -left-16 z-20 bg-white px-4 py-3 rounded-lg shadow-xl border border-gray-100 hidden sm:flex items-center -rotate-2">
+                <div className="bg-yellow-100 p-2 rounded-full mr-3">
+                  <svg className="w-5 h-5 text-yellow-600" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                </div>
+                <div>
+                  <p className="text-xs text-gray-500 font-semibold">Industry</p>
+                  <p className="text-sm font-bold text-gray-900">Expert Trainers</p>
+                </div>
+              </div>
+
+              {/* <div className="absolute bottom-20 -right-6 bg-white px-4 py-3 rounded-lg shadow-xl border border-gray-100 flex items-center -rotate-2">
                  <div className="bg-green-100 p-2 rounded-full mr-3">
                    <svg className="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path></svg>
                  </div>
@@ -92,10 +92,10 @@ const Header = () => {
                    <p className="text-sm font-bold text-gray-900">100%</p>
                    <p className="text-xs text-gray-500 font-semibold">Practical Learning</p>
                  </div>
-               </div>
+               </div> */}
             </div>
           </div>
-          
+
         </div>
       </div>
     </section>
