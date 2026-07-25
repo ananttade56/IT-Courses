@@ -49,11 +49,11 @@ const RoadmapAndPlacement = () => {
                   <p className="text-xs text-gray-500">Placement Rate</p>
                 </div>
                 <div className="text-center">
-                  <h4 className="text-2xl font-bold text-blue-600">12 LPA</h4>
+                  <h4 className="text-2xl font-bold text-blue-600">5.5 LPA</h4>
                   <p className="text-xs text-gray-500">Highest Package</p>
                 </div>
                 <div className="text-center">
-                  <h4 className="text-2xl font-bold text-blue-600">4.5 LPA</h4>
+                  <h4 className="text-2xl font-bold text-blue-600">3.2 LPA</h4>
                   <p className="text-xs text-gray-500">Average Package</p>
                 </div>
               </div>

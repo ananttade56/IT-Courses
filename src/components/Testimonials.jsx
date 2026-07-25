@@ -2,22 +2,22 @@ import React from 'react';
 
 const testimonials = [
   {
-    name: 'Rohit Sharma',
-    course: 'MERN Stack',
-    placedAt: 'Infosys',
-    review: 'TechEdu gave me the right knowledge and confidence. The trainers are amazing and very supportive!',
+    name: 'Shruti Kulkarni',
+    course: 'Python',
+    placedAt: 'Capgemini',
+    review: 'CsrCandid gave me the right knowledge and confidence. The trainers are amazing and very supportive!',
     avatar: '👨‍🎓'
   },
   {
-    name: 'Sneha Patil',
-    course: 'React.js',
+    name: 'Vaishnavi Bundile',
+    course: 'Java',
     placedAt: 'TCS',
     review: 'The course content is very well structured and practical. I got my dream job with a great package.',
     avatar: '👩‍🎓'
   },
   {
-    name: 'Aman Verma',
-    course: 'Python',
+    name: 'Yazish Khan',
+    course: 'Java',
     placedAt: 'Wipro',
     review: 'Hands-on projects and mock interviews helped me a lot in cracking the interviews.',
     avatar: '👨‍💻'
@@ -35,11 +35,11 @@ const Testimonials = () => {
   return (
     <section className="py-16 bg-gray-50 border-b border-gray-100 overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative">
-        
+
         <h2 className="text-2xl font-bold text-gray-900 mb-8">What Our Students Say</h2>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 relative">
-          
+
           {/* Navigation Arrows (Decorative for static design) */}
           <button className="absolute -left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow-md flex items-center justify-center text-gray-400 hover:text-blue-600 z-10 hidden xl:flex">
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path></svg>

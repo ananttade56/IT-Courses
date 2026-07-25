@@ -1,58 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FcBarChart } from "react-icons/fc";
 import { FaJava } from "react-icons/fa";
 
 const courses = [
-  // {
-  //   id: 1,
-  //   icon: (
-  //     <div className="text-[#61DAFB]">
-  //       <svg className="w-12 h-12" viewBox="0 0 118 103" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-  //         <path d="M59 13.064c18.5 0 35.5 4.862 47.9 12.872 12.6 8.134 10.9 16.536.5 24.331-10.3 7.731-25.9 12.871-48.4 12.871-22.5 0-38.1-5.14-48.4-12.871-10.4-7.795-12.1-16.197.5-24.331 12.4-8.01 29.4-12.872 47.9-12.872zm0 46.241c-22.2 0-39-5-44.5-10.5 5.5-5.5 22.3-10.5 44.5-10.5s39 5 44.5 10.5c-5.5 5.5-22.3 10.5-44.5 10.5z"/>
-  //         <path d="M59 39.813a10.6 10.6 0 100 21.2 10.6 10.6 0 000-21.2zm0 18.2a7.6 7.6 0 110-15.2 7.6 7.6 0 010 15.2z"/>
-  //         <path d="M47.7 22.1c11.6-14.7 26.6-21.8 37.3-21.8 11.1 0 17 6.4 14.8 15.5-2.2 9.2-12.4 20-24 34.7-11.6 14.7-26.6 21.8-37.3 21.8-11.1 0-17-6.4-14.8-15.5 2.2-9.2 12.4-20 24-34.7zm11.9 29.9c10.4-13.1 19.4-22.8 21.3-30.7 1.8-7.5-2.2-11.9-10.5-11.9-8.5 0-21.6 6.3-32 19.4-10.4 13.1-19.4 22.8-21.3 30.7-1.8 7.5 2.2 11.9 10.5 11.9 8.5 0 21.6-6.3 32-19.4z"/>
-  //         <path d="M70.3 22.1c-11.6-14.7-26.6-21.8-37.3-21.8-11.1 0-17 6.4-14.8 15.5 2.2 9.2 12.4 20 24 34.7 11.6 14.7 26.6 21.8 37.3 21.8 11.1 0 17-6.4 14.8-15.5-2.2-9.2-12.4-20-24-34.7zM58.4 52c-10.4-13.1-19.4-22.8-21.3-30.7-1.8-7.5 2.2-11.9 10.5-11.9 8.5 0 21.6 6.3 32 19.4 10.4 13.1 19.4 22.8 21.3 30.7 1.8 7.5-2.2 11.9-10.5 11.9-8.5 0-21.6-6.3-32-19.4z"/>
-  //       </svg>
-  //     </div>
-  //   ),
-  //   title: 'React.js Development',
-  //   duration: '2 Months',
-  //   level: 'Beginner',
-  //   rating: '4.8 (120)',
-  //   oldPrice: '₹12,999',
-  //   price: '₹8,999'
-  // },
-  // {
-  //   id: 2,
-  //   icon: (
-  //     <div className="text-[#68A063] bg-[#333] rounded p-1 w-12 h-12 flex items-center justify-center font-bold text-xl">
-  //       JS
-  //     </div>
-  //   ),
-  //   title: 'Node.js Development',
-  //   duration: '2.5 Months',
-  //   level: 'Beginner',
-  //   rating: '4.7 (95)',
-  //   oldPrice: '₹14,999',
-  //   price: '₹9,999'
-  // },
-  // {
-  //   id: 3,
-  //   icon: (
-  //     <div className="flex space-x-1">
-  //       <div className="w-6 h-6 bg-[#8CC84B] rounded-full text-white text-[10px] flex items-center justify-center font-bold">M</div>
-  //       <div className="w-6 h-6 bg-black rounded-full text-white text-[10px] flex items-center justify-center font-bold">EX</div>
-  //       <div className="w-6 h-6 bg-[#61DAFB] rounded-full text-white text-[10px] flex items-center justify-center font-bold">R</div>
-  //       <div className="w-6 h-6 bg-[#68A063] rounded-full text-white text-[10px] flex items-center justify-center font-bold">N</div>
-  //     </div>
-  //   ),
-  //   title: 'MERN Stack',
-  //   duration: '4 Months',
-  //   level: 'Intermediate',
-  //   rating: '4.9 (245)',
-  //   oldPrice: '₹34,999',
-  //   price: '₹24,999'
-  // },
   {
     id: 4,
     icon: (
@@ -66,8 +16,7 @@ const courses = [
     duration: '3 to 5 Months',
     level: 'Beginner to Advance',
     rating: '4.7 (110)',
-    oldPrice: '₹19,999',
-    price: '₹14,999'
+    price: 'At An Attractive Prices'
   },
   {
     id: 5,
@@ -80,23 +29,8 @@ const courses = [
     duration: '3 to 5 Months',
     level: 'Beginner to Advance',
     rating: '4.8 (132)',
-    oldPrice: '₹19,999',
-    price: '₹14,999'
+    price: 'At An Attractive Prices'
   },
-  // {
-  //   id: 6,
-  //   icon: (
-  //     <div className="text-[#FF9900] font-bold text-3xl">
-  //       aws
-  //     </div>
-  //   ),
-  //   title: 'AWS Cloud Essentials',
-  //   duration: '1.5 Months',
-  //   level: 'Beginner',
-  //   rating: '4.6 (80)',
-  //   oldPrice: '₹14,999',
-  //   price: '₹9,999'
-  // },
   {
     id: 7,
     icon: (
@@ -108,12 +42,13 @@ const courses = [
     duration: '4 Months',
     level: 'Beginner to Advance',
     rating: '4.6 ( 80)',
-    oldPrice: '₹19,999',
-    price: '₹14,999'
+    price: 'At An Attractive Prices'
   }
 ];
 
 const Courses = () => {
+  const [selectedCourse, setSelectedCourse] = useState(null);
+
   return (
     <section id="courses" className="py-16 bg-gray-50 border-b border-gray-100">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -149,11 +84,16 @@ const Courses = () => {
               </div>
 
               <div className="flex items-center space-x-3 mb-6">
-                <span className="text-xl font-bold text-gray-900">{course.price}</span>
-                <span className="text-sm text-gray-400 line-through">{course.oldPrice}</span>
+                <span className="px-4 py-1.5 text-sm font-extrabold text-black bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-full shadow-lg shadow-orange-500/40 hover:scale-105 transition-transform duration-300 border border-orange-400/50">
+                  {course.price}
+                </span>
+                {/* <span className="text-sm text-gray-400 line-through">{course.oldPrice}</span> */}
               </div>
 
-              <button className="w-full py-2.5 rounded-md text-blue-600 font-semibold border border-blue-200 hover:bg-blue-600 hover:text-white transition-colors">
+              <button
+                onClick={() => setSelectedCourse(course)}
+                className="w-full py-2.5 rounded-md text-blue-600 font-semibold border border-blue-200 hover:bg-blue-600 hover:text-white transition-colors"
+              >
                 Enroll Now
               </button>
 
@@ -162,6 +102,41 @@ const Courses = () => {
         </div>
 
       </div>
+
+      {selectedCourse && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-[fadeIn_0.2s_ease-in-out]">
+          <div className="bg-white rounded-2xl p-8 max-w-sm w-full relative shadow-2xl transform transition-all">
+            <button
+              onClick={() => setSelectedCourse(null)}
+              className="absolute top-4 right-4 text-gray-400 hover:text-gray-800 transition-colors bg-gray-100 hover:bg-gray-200 p-1.5 rounded-full"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+
+            <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+            </div>
+
+            <h3 className="text-2xl font-extrabold text-gray-900 mb-2 text-center">Ready to Enroll?</h3>
+            <p className="text-gray-600 text-center mb-6 text-sm">
+              Contact us directly to get started with <span className="font-semibold text-gray-800">{selectedCourse.title}</span>. Our team will guide you!
+            </p>
+
+            <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-100 rounded-xl p-5 text-center shadow-inner">
+              <span className="block text-xs uppercase tracking-wider text-blue-600 font-bold mb-1">Call / WhatsApp us at</span>
+              <span className="block text-2xl font-black text-blue-900 tracking-wide">+91 9403183323</span>
+            </div>
+
+            <button
+              onClick={() => setSelectedCourse(null)}
+              className="mt-6 w-full py-2.5 rounded-md text-blue-600 font-semibold border border-blue-200 hover:bg-blue-600 hover:text-white transition-colors"
+            >
+              Close Window
+            </button>
+          </div>
+        </div>
+      )}
+
     </section>
   );
 };
