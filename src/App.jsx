@@ -1,31 +1,28 @@
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import Header from './components/Header';
-import WhyChooseUs from './components/WhyChooseUs';
-import Courses from './components/Courses';
-import RoadmapAndPlacement from './components/RoadmapAndPlacement';
-import Testimonials from './components/Testimonials';
-import Trainers from './components/Trainers';
-import InformationSection from './components/InformationSection';
-import FaqAndContact from './components/FaqAndContact';
 import Footer from './components/Footer';
+import Home from './pages/Home';
+import AboutUs from './pages/AboutUs';
+import ContactUs from './pages/ContactUs';
+import CourseDetail from './pages/CourseDetail';
 
 function App() {
   return (
-    <div className="min-h-screen flex flex-col font-sans bg-gray-50 overflow-x-hidden w-full">
-      <Navbar />
-      <main className="flex-grow">
-        <Header />
-        <WhyChooseUs />
-        <Courses />
-        <RoadmapAndPlacement />
-        <Testimonials />
-        {/* <Trainers /> */}
-        <InformationSection />
-        <FaqAndContact />
-      </main>
-      <Footer />
-    </div>
+    <Router>
+      <div className="min-h-screen flex flex-col font-sans bg-gray-50 overflow-x-hidden w-full">
+        <Navbar />
+        <main className="flex-grow">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<AboutUs />} />
+            <Route path="/contact" element={<ContactUs />} />
+            <Route path="/course/:id" element={<CourseDetail />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 

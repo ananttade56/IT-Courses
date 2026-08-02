@@ -41,7 +41,7 @@ const RoadmapAndPlacement = () => {
             <div className="bg-white rounded-xl p-6 sm:p-8 border border-gray-100 shadow-sm">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
                 <div className="text-center">
-                  <h4 className="text-2xl font-bold text-blue-600">500+</h4>
+                  <h4 className="text-2xl font-bold text-blue-600">1900</h4>
                   <p className="text-xs text-gray-500">Students Placed</p>
                 </div>
                 <div className="text-center">

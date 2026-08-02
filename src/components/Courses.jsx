@@ -1,56 +1,19 @@
-import React, { useState } from 'react';
-import { FcBarChart } from "react-icons/fc";
-import { FaJava } from "react-icons/fa";
-
-const courses = [
-  {
-    id: 4,
-    icon: (
-      <div className="text-[#3776AB]">
-        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="50" height="100" viewBox="0 0 48 48">
-          <path fill="#0277BD" d="M24.047,5c-1.555,0.005-2.633,0.142-3.936,0.367c-3.848,0.67-4.549,2.077-4.549,4.67V14h9v2H15.22h-4.35c-2.636,0-4.943,1.242-5.674,4.219c-0.826,3.417-0.863,5.557,0,9.125C5.851,32.005,7.294,34,9.931,34h3.632v-5.104c0-2.966,2.686-5.896,5.764-5.896h7.236c2.523,0,5-1.862,5-4.377v-8.586c0-2.439-1.759-4.263-4.218-4.672C27.406,5.359,25.589,4.994,24.047,5z M19.063,9c0.821,0,1.5,0.677,1.5,1.502c0,0.833-0.679,1.498-1.5,1.498c-0.837,0-1.5-0.664-1.5-1.498C17.563,9.68,18.226,9,19.063,9z"></path><path fill="#FFC107" d="M23.078,43c1.555-0.005,2.633-0.142,3.936-0.367c3.848-0.67,4.549-2.077,4.549-4.67V34h-9v-2h9.343h4.35c2.636,0,4.943-1.242,5.674-4.219c0.826-3.417,0.863-5.557,0-9.125C41.274,15.995,39.831,14,37.194,14h-3.632v5.104c0,2.966-2.686,5.896-5.764,5.896h-7.236c-2.523,0-5,1.862-5,4.377v8.586c0,2.439,1.759,4.263,4.218,4.672C19.719,42.641,21.536,43.006,23.078,43z M28.063,39c-0.821,0-1.5-0.677-1.5-1.502c0-0.833,0.679-1.498,1.5-1.498c0.837,0,1.5,0.664,1.5,1.498C29.563,38.32,28.899,39,28.063,39z"></path>
-        </svg>
-      </div>
-    ),
-    title: 'Python Programming',
-    duration: '3 to 5 Months',
-    level: 'Beginner to Advance',
-    rating: '4.7 (110)',
-    price: 'At An Attractive Prices'
-  },
-  {
-    id: 5,
-    icon: (
-      <div className="flex w-full">
-        <FcBarChart className='w-72 h-10' />
-      </div>
-    ),
-    title: 'Data Science',
-    duration: '3 to 5 Months',
-    level: 'Beginner to Advance',
-    rating: '4.8 (132)',
-    price: 'At An Attractive Prices'
-  },
-  {
-    id: 7,
-    icon: (
-      <div className="text-[#FF9900] flex items-center justify-center">
-        <FaJava className="w-12 h-12" />
-      </div>
-    ),
-    title: 'Java Fullstack',
-    duration: '4 Months',
-    level: 'Beginner to Advance',
-    rating: '4.6 ( 80)',
-    price: 'At An Attractive Prices'
-  }
-];
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { courses } from '../data/courses';
+import { motion } from 'framer-motion';
 
 const Courses = () => {
-  const [selectedCourse, setSelectedCourse] = useState(null);
 
   return (
-    <section id="courses" className="py-16 bg-gray-50 border-b border-gray-100">
+    <motion.section
+      id="courses"
+      className="py-16 bg-gray-50 border-b border-gray-100"
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.1 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+    >
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
 
         <div className="flex flex-col sm:flex-row justify-between items-center mb-12">
@@ -62,40 +25,55 @@ const Courses = () => {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {courses.map(course => (
-            <div key={course.id} className="bg-white rounded-xl border border-gray-100 p-6 flex flex-col items-center hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+            <div key={course.id} className="relative bg-[#f9fafb] rounded-[32px] p-8 flex flex-col items-center shadow-[0_15px_40px_rgba(0,0,0,0.08)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.12)] transition-all duration-300 transform hover:-translate-y-2 overflow-hidden mx-auto w-full max-w-sm border border-gray-100">
 
-              <div className="h-16 flex items-center justify-center mb-4">
-                {course.icon}
+              {/* Background Code Watermarks */}
+              <div className="absolute top-12 left-6 text-gray-300 font-mono text-2xl font-bold opacity-30 select-none">{`{...}`}</div>
+              <div className="absolute top-32 left-8 text-gray-300 font-mono text-xl font-bold opacity-30 select-none">{`<f>`}</div>
+              <div className="absolute top-44 right-6 text-gray-300 font-mono text-3xl font-bold opacity-30 select-none">{`{}`}</div>
+              <div className="absolute bottom-32 left-6 text-gray-300 font-mono text-3xl font-bold opacity-30 select-none">{`{}`}</div>
+              <div className="absolute bottom-16 right-8 text-gray-300 font-mono text-xl font-bold opacity-30 select-none">{`<f>`}</div>
+
+              {/* Yellow Tape Ribbon */}
+              <div className="absolute top-8 -right-12 bg-[#eec662] text-[#111827] font-black text-[13px] py-2 px-14 transform rotate-45 z-20 flex flex-col items-center leading-tight tracking-wide shadow-md">
+                <span>At An</span>
+                <span>Attractive Price</span>
               </div>
 
-              <h3 className="text-lg font-bold text-gray-900 mb-3">{course.title}</h3>
+              <div className="relative z-10 h-24 flex items-center justify-center mb-6 mt-4">
+                <div className="transform scale-125">
+                  {course.icon}
+                </div>
+              </div>
 
-              <div className="flex items-center text-xs text-gray-500 mb-3 space-x-2">
+              <h3 className="relative z-10 text-[22px] font-extrabold text-[#111827] mb-4 text-center tracking-tight">{course.title}</h3>
+
+              <div className="relative z-10 flex items-center text-[15px] text-[#4b5563] mb-4 space-x-2 font-medium">
+                <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                 <span>{course.duration}</span>
-                <span className="w-1 h-1 bg-gray-300 rounded-full"></span>
+                <span className="w-1.5 h-1.5 bg-gray-300 rounded-full mx-1.5"></span>
                 <span>{course.level}</span>
               </div>
 
-              <div className="flex items-center mb-4">
-                <div className="flex text-yellow-400">
+              <div className="relative z-10 flex items-center mb-8">
+                <div className="flex text-[#fbbf24] text-lg tracking-widest">
                   {'★★★★★'.split('').map((star, i) => <span key={i}>{star}</span>)}
                 </div>
-                <span className="text-xs text-gray-500 ml-2">{course.rating}</span>
+                <span className="text-[15px] font-medium text-gray-600 ml-3">{course.rating}</span>
               </div>
 
-              <div className="flex items-center space-x-3 mb-6">
-                <span className="px-4 py-1.5 text-sm font-extrabold text-black bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-full shadow-lg shadow-orange-500/40 hover:scale-105 transition-transform duration-300 border border-orange-400/50">
-                  {course.price}
-                </span>
-                {/* <span className="text-sm text-gray-400 line-through">{course.oldPrice}</span> */}
-              </div>
+              <div className="relative z-10 w-full flex flex-col space-y-4">
+                {/* Enroll Now Button */}
 
-              <button
-                onClick={() => setSelectedCourse(course)}
-                className="w-full py-2.5 rounded-md text-blue-600 font-semibold border border-blue-200 hover:bg-blue-600 hover:text-white transition-colors"
-              >
-                Enroll Now
-              </button>
+
+                {/* View Details Button */}
+                <Link
+                  to={`/course/${course.id}`}
+                  className="w-full py-3.5 rounded-xl border-[1.5px] border-[#93c5fd] text-[#3b82f6] font-medium text-[17px] flex justify-center items-center hover:bg-blue-50 transition-colors bg-transparent"
+                >
+                  View Details
+                </Link>
+              </div>
 
             </div>
           ))}
@@ -103,41 +81,9 @@ const Courses = () => {
 
       </div>
 
-      {selectedCourse && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-[fadeIn_0.2s_ease-in-out]">
-          <div className="bg-white rounded-2xl p-8 max-w-sm w-full relative shadow-2xl transform transition-all">
-            <button
-              onClick={() => setSelectedCourse(null)}
-              className="absolute top-4 right-4 text-gray-400 hover:text-gray-800 transition-colors bg-gray-100 hover:bg-gray-200 p-1.5 rounded-full"
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-            </button>
 
-            <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
-            </div>
 
-            <h3 className="text-2xl font-extrabold text-gray-900 mb-2 text-center">Ready to Enroll?</h3>
-            <p className="text-gray-600 text-center mb-6 text-sm">
-              Contact us directly to get started with <span className="font-semibold text-gray-800">{selectedCourse.title}</span>. Our team will guide you!
-            </p>
-
-            <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-100 rounded-xl p-5 text-center shadow-inner">
-              <span className="block text-xs uppercase tracking-wider text-blue-600 font-bold mb-1">Call / WhatsApp us at</span>
-              <span className="block text-2xl font-black text-blue-900 tracking-wide">+91 9403183323</span>
-            </div>
-
-            <button
-              onClick={() => setSelectedCourse(null)}
-              className="mt-6 w-full py-2.5 rounded-md text-blue-600 font-semibold border border-blue-200 hover:bg-blue-600 hover:text-white transition-colors"
-            >
-              Close Window
-            </button>
-          </div>
-        </div>
-      )}
-
-    </section>
+    </motion.section>
   );
 };
 

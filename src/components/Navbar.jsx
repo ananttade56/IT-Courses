@@ -1,17 +1,27 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import api from '../services/api';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
+  useEffect(() => {
+    const fetchApiData = async () => {
+      try {
+        const res = await api.get('/');
+        console.log(res.data);
+      } catch (err) {
+        console.error('API Fetch Error:', err);
+      }
+    };
+
+    fetchApiData();
+  }, []);
   const navLinks = [
-    { name: 'Home', href: '#' },
-    { name: 'Courses', href: '#courses' },
-    { name: 'About Us', href: '#about' },
-    { name: 'Trainers', href: '#trainers' },
-    { name: 'Placements', href: '#placements' },
-    // { name: 'Testimonials', href: '#testimonials' },
-    // { name: 'Blog', href: '#blog' },
-    // { name: 'Contact', href: '#contact' },
+    { name: 'Home', href: '/' },
+    { name: 'Courses', href: '/#courses' },
+    { name: 'About Us', href: '/about' },
+    { name: 'Contact', href: '/contact' },
   ];
 
   return (
@@ -21,17 +31,17 @@ const Navbar = () => {
 
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
-            <a href="/">
+            <Link to="/">
               <img src="/asset/csrLogo.png" alt="TechEdu Logo" className="w-48 sm:w-64 object-contain" />
-            </a>
+            </Link>
           </div>
 
           {/* Desktop Nav Links */}
           <div className="hidden lg:flex items-center space-x-6 text-sm font-medium text-white">
             {navLinks.map((link) => (
-              <a key={link.name} href={link.href} className="hover:text-blue-600 transition-colors">
+              <Link key={link.name} to={link.href} className="hover:text-blue-600 transition-colors">
                 {link.name}
-              </a>
+              </Link>
             ))}
           </div>
 
@@ -69,9 +79,9 @@ const Navbar = () => {
         <div className="lg:hidden bg-white border-t border-gray-100 shadow-xl absolute w-full">
           <div className="px-4 pt-2 pb-6 space-y-1">
             {navLinks.map((link) => (
-              <a key={link.name} href={link.href} className="text-gray-700 hover:text-blue-600 hover:bg-blue-50 block px-3 py-2 rounded-md text-base font-medium">
+              <Link key={link.name} to={link.href} onClick={() => setIsOpen(false)} className="text-gray-700 hover:text-blue-600 hover:bg-blue-50 block px-3 py-2 rounded-md text-base font-medium">
                 {link.name}
-              </a>
+              </Link>
             ))}
             <div className="mt-4 pt-4 border-t border-gray-100 flex flex-col space-y-3">
               <div className="flex items-center text-blue-600 font-semibold px-3 py-2">

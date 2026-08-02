@@ -1,8 +1,15 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 
 const InformationSection = () => {
   return (
-    <section className="py-16 bg-gray-50 border-b border-gray-100">
+    <motion.section 
+      className="py-16 bg-gray-50 border-b border-gray-100"
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.1 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+    >
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
 
         <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
@@ -87,7 +94,7 @@ const InformationSection = () => {
         </div>
 
       </div>
-    </section>
+    </motion.section>
   );
 };
 

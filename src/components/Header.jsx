@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 
 const Header = () => {
   return (
@@ -7,7 +8,12 @@ const Header = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
 
           {/* Left Content */}
-          <div className="max-w-2xl">
+          <motion.div
+            className="max-w-2xl"
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
             <div className="inline-flex items-center px-4 py-2 rounded-full bg-blue-100 text-blue-700 font-medium text-sm mb-6">
               <span className="mr-2">🏆</span> #1 IT Training Institute
             </div>
@@ -61,10 +67,15 @@ const Header = () => {
                 <span className="text-sm text-gray-500">Courses Available</span>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Image / Graphic */}
-          <div className="relative h-[350px] sm:h-[400px] lg:h-[500px] mt-12 lg:mt-0">
+          <motion.div
+            className="relative h-[350px] sm:h-[400px] lg:h-[500px] mt-12 lg:mt-0"
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+          >
             {/* Abstract Background Shapes */}
             <div className="absolute top-0 right-0 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob"></div>
             <div className="absolute top-0 right-32 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000"></div>
@@ -83,18 +94,8 @@ const Header = () => {
                   <p className="text-sm font-bold text-gray-900">Expert Trainers</p>
                 </div>
               </div>
-
-              {/* <div className="absolute bottom-20 -right-6 bg-white px-4 py-3 rounded-lg shadow-xl border border-gray-100 flex items-center -rotate-2">
-                 <div className="bg-green-100 p-2 rounded-full mr-3">
-                   <svg className="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path></svg>
-                 </div>
-                 <div>
-                   <p className="text-sm font-bold text-gray-900">100%</p>
-                   <p className="text-xs text-gray-500 font-semibold">Practical Learning</p>
-                 </div>
-               </div> */}
             </div>
-          </div>
+          </motion.div>
 
         </div>
       </div>
