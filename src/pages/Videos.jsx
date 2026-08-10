@@ -96,7 +96,9 @@ const Videos = () => {
   const getStreamUrl = (url) => {
     if (!url) return '';
     if (url.startsWith('http')) return url;
-    return `${api.defaults.baseURL}${url}`;
+    const baseUrl = api.defaults.baseURL ? api.defaults.baseURL.replace(/\/$/, '') : '';
+    const pathUrl = url.startsWith('/') ? url : `/${url}`;
+    return `${baseUrl}${pathUrl}`;
   };
 
   return (
@@ -269,7 +271,10 @@ const Videos = () => {
                   controlsList="nodownload"
                   onContextMenu={(e) => e.preventDefault()}
                   autoPlay
-                  onError={() => setVideoError(true)}
+                  onError={(e) => {
+                    console.error('Video playback error:', e.target.error);
+                    setVideoError(true);
+                  }}
                   className="w-full h-auto max-h-[75vh] object-contain bg-black"
                 />
               )}
