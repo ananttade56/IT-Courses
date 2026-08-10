@@ -97,8 +97,6 @@ const SignUp = () => {
                 onChange={handleChange}
               >
                 <option value="Student">Student</option>
-                <option value="Teacher">Teacher</option>
-                <option value="Admin">Admin</option>
               </select>
             </div>
             <div>

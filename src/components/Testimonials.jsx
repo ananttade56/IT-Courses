@@ -2,8 +2,8 @@ import React from 'react';
 
 const testimonials = [
   {
-    name: 'Shruti Kulkarni',
-    course: 'Python',
+    name: 'Pragati Jadhav',
+    course: 'QA',
     placedAt: 'Capgemini',
     review: 'CsrCandid gave me the right knowledge and confidence. The trainers are amazing and very supportive!',
     avatar: '👨‍🎓'

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FaEdit, FaTrash, FaPlus, FaTimes, FaBook, FaUserCheck, FaCheck } from 'react-icons/fa';
 import { fetchCourses, createCourse, updateCourse, deleteCourse, fetchPendingStudents, approveStudent, rejectStudent, fetchApprovedStudents } from '../services/adminService';
 import { motion, AnimatePresence } from 'framer-motion';
+import CourseModal from '../components/CourseModal';
 
 const AdminDashboard = () => {
   const [courses, setCourses] = useState([]);
@@ -12,11 +13,8 @@ const AdminDashboard = () => {
   const [error, setError] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isStudentModalOpen, setIsStudentModalOpen] = useState(false);
-  const [studentToManage, setStudentToManage] = useState(null);
   const [selectedCourseIds, setSelectedCourseIds] = useState([]);
   const [editingCourse, setEditingCourse] = useState(null);
-  const [formData, setFormData] = useState({ title: '', description: '' });
-  const [formLoading, setFormLoading] = useState(false);
 
   const loadData = async () => {
     setLoading(true);
@@ -43,40 +41,21 @@ const AdminDashboard = () => {
 
   const handleOpenModal = (course = null) => {
     setEditingCourse(course);
-    if (course) {
-      setFormData({ title: course.title, description: course.description || '' });
-    } else {
-      setFormData({ title: '', description: '' });
-    }
     setIsModalOpen(true);
   };
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
     setEditingCourse(null);
-    setFormData({ title: '', description: '' });
   };
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setFormLoading(true);
-    try {
-      if (editingCourse) {
-        await updateCourse(editingCourse._id, formData);
-      } else {
-        await createCourse(formData);
-      }
-      await loadData();
-      handleCloseModal();
-    } catch (err) {
-      alert(err?.response?.data?.message || 'Failed to save course.');
-    } finally {
-      setFormLoading(false);
+  const handleSaveCourse = async (id, courseData) => {
+    if (id) {
+      await updateCourse(id, courseData);
+    } else {
+      await createCourse(courseData);
     }
+    await loadData();
   };
 
   const handleDelete = async (id) => {
@@ -106,7 +85,7 @@ const AdminDashboard = () => {
   };
 
   const handleToggleCourse = (courseId) => {
-    setSelectedCourseIds(prev => 
+    setSelectedCourseIds(prev =>
       prev.includes(courseId) ? prev.filter(id => id !== courseId) : [...prev, courseId]
     );
   };
@@ -305,8 +284,8 @@ const AdminDashboard = () => {
                         </td>
                         <td className="px-6 py-4">
                           <div className="text-sm text-gray-500 max-w-xs truncate">
-                            {student.enrolledCourses?.length > 0 
-                              ? student.enrolledCourses.map(c => c.title || 'Course').join(', ') 
+                            {student.enrolledCourses?.length > 0
+                              ? student.enrolledCourses.map(c => c.title || 'Course').join(', ')
                               : 'None'}
                           </div>
                         </td>
@@ -338,7 +317,7 @@ const AdminDashboard = () => {
                 <FaUserCheck className="mr-2 text-blue-600" /> Approved Students
               </h3>
             </div>
-            
+
             {approvedStudents.length === 0 ? (
               <div className="p-12 text-center">
                 <div className="w-20 h-20 bg-blue-50 text-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -371,8 +350,8 @@ const AdminDashboard = () => {
                         </td>
                         <td className="px-6 py-4">
                           <div className="text-sm text-gray-500 max-w-xs truncate">
-                            {student.enrolledCourses?.length > 0 
-                              ? student.enrolledCourses.map(c => c.title).join(', ') 
+                            {student.enrolledCourses?.length > 0
+                              ? student.enrolledCourses.map(c => c.title).join(', ')
                               : 'None'}
                           </div>
                         </td>
@@ -395,87 +374,12 @@ const AdminDashboard = () => {
       </div>
 
       {/* Course Modal */}
-      <AnimatePresence>
-        {isModalOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4"
-          >
-            <motion.div
-              initial={{ scale: 0.95 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.95 }}
-              className="bg-white rounded-2xl shadow-xl w-full max-w-md overflow-hidden"
-            >
-              <div className="px-6 py-4 border-b border-gray-100 flex justify-between items-center bg-gray-50">
-                <h3 className="text-xl font-bold text-gray-900">
-                  {editingCourse ? 'Edit Course' : 'Add New Course'}
-                </h3>
-                <button
-                  onClick={handleCloseModal}
-                  className="text-gray-400 hover:text-gray-600 transition-colors"
-                >
-                  <FaTimes className="text-xl" />
-                </button>
-              </div>
-              <form onSubmit={handleSubmit} className="p-6">
-                <div className="space-y-4">
-                  <div>
-                    <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-1">
-                      Course Title *
-                    </label>
-                    <input
-                      type="text"
-                      id="title"
-                      name="title"
-                      required
-                      value={formData.title}
-                      onChange={handleChange}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-shadow"
-                      placeholder="e.g., Introduction to React"
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-1">
-                      Description
-                    </label>
-                    <textarea
-                      id="description"
-                      name="description"
-                      rows="4"
-                      value={formData.description}
-                      onChange={handleChange}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-shadow resize-none"
-                      placeholder="Briefly describe the course content..."
-                    ></textarea>
-                  </div>
-                </div>
-                <div className="mt-8 flex justify-end space-x-3">
-                  <button
-                    type="button"
-                    onClick={handleCloseModal}
-                    className="px-5 py-2.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 focus:outline-none transition-colors"
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    type="submit"
-                    disabled={formLoading}
-                    className="px-5 py-2.5 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none transition-colors disabled:opacity-70 flex items-center"
-                  >
-                    {formLoading ? (
-                      <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
-                    ) : null}
-                    {editingCourse ? 'Save Changes' : 'Create Course'}
-                  </button>
-                </div>
-              </form>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <CourseModal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        course={editingCourse}
+        onSave={handleSaveCourse}
+      />
 
       {/* Student Approval/Manage Modal */}
       <AnimatePresence>

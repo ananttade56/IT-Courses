@@ -39,3 +39,12 @@ export const rejectStudent = async (studentId) => {
   const response = await api.post(`/api/admin/reject-student/${studentId}`);
   return response.data;
 };
+
+export const uploadIcon = async (file) => {
+  const formData = new FormData();
+  formData.append('icon', file);
+  const response = await api.post('/api/admin/upload-image', formData, {
+    headers: { 'Content-Type': 'multipart/form-data' }
+  });
+  return response.data;
+};
