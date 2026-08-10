@@ -13,6 +13,7 @@ const Videos = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [selectedVideo, setSelectedVideo] = useState(null);
+  const [videoError, setVideoError] = useState(false);
   const fileInputRef = useRef(null);
 
   const role = localStorage.getItem('role');
@@ -58,6 +59,11 @@ const Videos = () => {
   const handleUpload = async (e) => {
     const file = e.target.files[0];
     if (file && selectedCourseId) {
+      if (!file.type.includes('mp4')) {
+        setError('Please upload an MP4 video file for best browser compatibility.');
+        e.target.value = null;
+        return;
+      }
       setUploading(true);
       setError('');
       try {
@@ -133,11 +139,12 @@ const Videos = () => {
                 </button>
                 <input
                   type="file"
-                  accept="video/*"
+                  accept="video/mp4"
                   ref={fileInputRef}
                   onChange={handleUpload}
                   className="hidden"
                 />
+                <p className="text-xs text-gray-500 mt-2 absolute -bottom-6 right-0">Only MP4 format supported</p>
               </>
             )}
           </div>
@@ -194,7 +201,10 @@ const Videos = () => {
                     />
                     <div
                       className="absolute inset-0 flex items-center justify-center bg-black/10 group-hover:bg-black/40 transition-all cursor-pointer"
-                      onClick={() => setSelectedVideo(video)}
+                      onClick={() => {
+                        setSelectedVideo(video);
+                        setVideoError(false);
+                      }}
                     >
                       <div className="w-14 h-14 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-transform">
                         <FaPlay className="text-blue-600 ml-1 text-xl" />
@@ -235,20 +245,34 @@ const Videos = () => {
             <div className="relative w-full max-w-5xl bg-black rounded-2xl overflow-hidden shadow-2xl flex flex-col">
               <div className="absolute top-4 right-4 z-10">
                 <button
-                  onClick={() => setSelectedVideo(null)}
+                  onClick={() => {
+                    setSelectedVideo(null);
+                    setVideoError(false);
+                  }}
                   className="p-3 bg-white/10 hover:bg-white/20 rounded-full text-white transition-colors backdrop-blur-md"
                 >
                   <FaTimes className="text-xl" />
                 </button>
               </div>
-              <video
-                src={getStreamUrl(selectedVideo.streamUrl)}
-                controls
-                controlsList="nodownload"
-                onContextMenu={(e) => e.preventDefault()}
-                autoPlay
-                className="w-full h-auto max-h-[75vh] object-contain bg-black"
-              />
+              {videoError ? (
+                <div className="w-full h-[50vh] flex flex-col items-center justify-center bg-gray-900 text-white p-8 text-center">
+                  <FaTimes className="text-4xl text-red-500 mb-4" />
+                  <h3 className="text-xl font-bold mb-2">Video format not supported</h3>
+                  <p className="text-gray-400 max-w-md">
+                    This browser cannot play the original video format. Please upload videos in MP4 (H.264) format.
+                  </p>
+                </div>
+              ) : (
+                <video
+                  src={getStreamUrl(selectedVideo.streamUrl)}
+                  controls
+                  controlsList="nodownload"
+                  onContextMenu={(e) => e.preventDefault()}
+                  autoPlay
+                  onError={() => setVideoError(true)}
+                  className="w-full h-auto max-h-[75vh] object-contain bg-black"
+                />
+              )}
               <div className="p-6 bg-gray-900 text-white flex justify-between items-center">
                 <h3 className="font-semibold text-xl truncate pr-4">{selectedVideo.title}</h3>
                 {canManageVideos && (
