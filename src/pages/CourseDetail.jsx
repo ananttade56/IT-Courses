@@ -186,7 +186,7 @@ const CourseDetail = () => {
 
             <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-100 rounded-xl p-5 text-center shadow-inner">
               <span className="block text-xs uppercase tracking-wider text-blue-600 font-bold mb-1">Call / WhatsApp us at</span>
-              <span className="block text-2xl font-black text-blue-900 tracking-wide">+91 9403183323</span>
+              <a href="tel:+918956083323" className="block text-2xl font-black text-blue-900 tracking-wide hover:text-blue-700 transition-colors">+91 8956083323</a>
             </div>
 
             <button
