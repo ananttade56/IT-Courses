@@ -1,16 +1,42 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import api from '../services/api';
+
+const badgeStyles = [
+  'bg-red-100 text-red-600',
+  'bg-orange-100 text-orange-600',
+  'bg-green-100 text-green-600',
+  'bg-purple-100 text-purple-600',
+  'bg-blue-100 text-blue-600'
+];
 
 const InformationSection = () => {
+  const [courses, setCourses] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchCourses = async () => {
+      try {
+        const response = await api.get('/api/public/courses');
+        setCourses(response.data.courses || []);
+      } catch (error) {
+        console.error('Error fetching courses for upcoming batches:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchCourses();
+  }, []);
+
   return (
-    <motion.section 
+    <motion.section
       className="py-16 bg-gray-50 border-b border-gray-100"
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
 
         <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
 
@@ -55,40 +81,32 @@ const InformationSection = () => {
                 </div>
               </div>
             </div>
-            {/* <button className="w-full mt-6 py-2 border border-blue-200 text-blue-600 rounded-md text-sm font-semibold hover:bg-blue-50">
-              View All Resources
-            </button> */}
           </div>
 
-          {/* Upcoming Batches */}
+          {/* Upcoming Batches - Dynamic from /api/public/courses */}
           <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm flex flex-col h-full">
             <h3 className="text-lg font-bold text-gray-900 mb-6">Upcoming Batches</h3>
-            <div className="space-y-4 flex-grow">
-              <div className="border border-gray-100 p-3 rounded-lg flex justify-between items-center bg-gray-50">
-                <div>
-                  <h4 className="text-sm font-bold text-gray-900">Java Fullstack Developer </h4>
-                  <p className="text-xs text-gray-500">To be informed soon...</p>
+            <div className="space-y-4 flex-grow max-h-80 overflow-y-auto pr-1">
+              {loading ? (
+                <div className="flex justify-center items-center py-8">
+                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
                 </div>
-                <span className="bg-red-100 text-red-600 text-[10px] font-bold px-2 py-1 rounded">11 Seats Left</span>
-              </div>
-              <div className="border border-gray-100 p-3 rounded-lg flex justify-between items-center bg-gray-50">
-                <div>
-                  <h4 className="text-sm font-bold text-gray-900">Data Science</h4>
-                  <p className="text-xs text-gray-500">To be informed soon...</p>
-                </div>
-                <span className="bg-orange-100 text-orange-600 text-[10px] font-bold px-2 py-1 rounded">15 Seats Left</span>
-              </div>
-              <div className="border border-gray-100 p-3 rounded-lg flex justify-between items-center bg-gray-50">
-                <div>
-                  <h4 className="text-sm font-bold text-gray-900">Python Programming</h4>
-                  <p className="text-xs text-gray-500">To be informed soon...</p>
-                </div>
-                <span className="bg-green-100 text-green-600 text-[10px] font-bold px-2 py-1 rounded">20 Seats Left</span>
-              </div>
+              ) : courses.length > 0 ? (
+                courses.map((course, index) => (
+                  <div key={course._id} className="border border-gray-100 p-3 rounded-lg flex justify-between items-center bg-gray-50 hover:bg-blue-50/50 transition-colors">
+                    <div>
+                      <h4 className="text-sm font-bold text-gray-900">{course.title}</h4>
+                      <p className="text-xs text-gray-500">{course.duration || 'To be informed soon...'}</p>
+                    </div>
+                    <span className={`text-[10px] font-bold px-2 py-1 rounded ${badgeStyles[index % badgeStyles.length]}`}>
+                      {(10 + (index * 3)) % 25 + 5} Seats Left
+                    </span>
+                  </div>
+                ))
+              ) : (
+                <p className="text-xs text-gray-500 py-4 text-center">No upcoming batches currently scheduled.</p>
+              )}
             </div>
-            {/* <button className="w-full mt-6 py-2 border border-blue-200 text-blue-600 rounded-md text-sm font-semibold hover:bg-blue-50">
-              View All Batches
-            </button> */}
           </div>
 
         </div>

@@ -27,19 +27,6 @@ const Navbar = () => {
       window.removeEventListener('storage', handleAuthChange);
     };
   }, []);
-
-  useEffect(() => {
-    const fetchApiData = async () => {
-      try {
-        const res = await api.get('/');
-        console.log(res.data);
-      } catch (err) {
-        console.error('API Fetch Error:', err);
-      }
-    };
-
-    fetchApiData();
-  }, []);
   const navLinks = [
     { name: 'Home', href: '/' },
     { name: 'Courses', href: '/#courses' },
@@ -50,13 +37,13 @@ const Navbar = () => {
 
   return (
     <nav className="bg-[#1a1f36] shadow-sm sticky top-0 z-50">
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
 
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
-            <Link to="/">
-              <img src="/asset/csrLogo.png" alt="TechEdu Logo" className="w-48 sm:w-64 object-contain" />
+            <Link to="/" className="cursor-pointer">
+              <img src="/asset/csrLogo.png" alt="TechEdu Logo" className="w-48 sm:w-64 object-contain cursor-pointer" />
             </Link>
           </div>
 

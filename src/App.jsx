@@ -13,6 +13,7 @@ const Login = lazy(() => import('./pages/Login'));
 const SignUp = lazy(() => import('./pages/SignUp'));
 const Videos = lazy(() => import('./pages/Videos'));
 const AdminDashboard = lazy(() => import('./pages/AdminDashboard'));
+const AllCourses = lazy(() => import('./pages/AllCourses'));
 
 // Loading fallback component
 const PageLoader = () => (
@@ -32,6 +33,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<AboutUs />} />
               <Route path="/contact" element={<ContactUs />} />
+              <Route path="/courses" element={<AllCourses />} />
               <Route path="/course/:id" element={<CourseDetail />} />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<SignUp />} />

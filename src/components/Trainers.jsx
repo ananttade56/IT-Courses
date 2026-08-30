@@ -30,7 +30,7 @@ const trainers = [
 const Trainers = () => {
   return (
     <section className="py-16 bg-white border-b border-gray-100">
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="flex justify-between items-center mb-8">
           <h2 className="text-2xl font-bold text-gray-900">Meet Our Trainers</h2>

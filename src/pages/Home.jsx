@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import WhyChooseUs from '../components/WhyChooseUs';
 import Courses from '../components/Courses';
 import RoadmapAndPlacement from '../components/RoadmapAndPlacement';
+import ClientResources from '../components/ClientResources';
 import Testimonials from '../components/Testimonials';
 import Trainers from '../components/Trainers';
 import InformationSection from '../components/InformationSection';
@@ -32,6 +33,7 @@ const Home = () => {
       <WhyChooseUs />
       <Courses />
       <RoadmapAndPlacement />
+      <ClientResources />
       <Testimonials />
       {/* <Trainers /> */}
       <InformationSection />

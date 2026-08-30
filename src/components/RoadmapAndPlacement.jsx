@@ -3,7 +3,7 @@ import React from 'react';
 const RoadmapAndPlacement = () => {
   return (
     <section className="py-16 bg-white border-b border-gray-100">
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
 
         <div className="grid lg:grid-cols-2 gap-12">
 
@@ -55,17 +55,6 @@ const RoadmapAndPlacement = () => {
                 <div className="text-center">
                   <h4 className="text-2xl font-bold text-blue-600">3.2 LPA</h4>
                   <p className="text-xs text-gray-500">Average Package</p>
-                </div>
-              </div>
-
-              <div className="pt-6 border-t border-gray-100 opacity-60 grayscale overflow-x-auto custom-scrollbar pb-2">
-                <div className="flex justify-between gap-8 items-center min-w-[600px] lg:min-w-full px-2">
-                  <div className="text-xl font-bold font-serif text-blue-800">TCS</div>
-                  <div className="text-xl font-bold font-sans text-blue-500">Infosys</div>
-                  <div className="text-xl font-bold font-serif text-blue-600">Capgemini</div>
-                  <div className="text-xl font-bold font-sans text-purple-700">Wipro</div>
-                  <div className="text-xl font-bold font-sans text-black">accenture</div>
-                  <div className="text-xl font-bold font-sans text-blue-900">HCL</div>
                 </div>
               </div>
             </div>

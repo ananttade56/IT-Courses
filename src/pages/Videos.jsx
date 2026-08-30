@@ -59,7 +59,12 @@ const Videos = () => {
   const handleUpload = async (e) => {
     const file = e.target.files[0];
     if (file && selectedCourseId) {
-      if (!file.type.includes('mp4')) {
+      if (file.size > 2 * 1024 * 1024 * 1024) {
+        setError('File size exceeds the maximum limit of 2 GB.');
+        e.target.value = null;
+        return;
+      }
+      if (!file.type.includes('mp4') && !file.name.toLowerCase().endsWith('.mp4')) {
         setError('Please upload an MP4 video file for best browser compatibility.');
         e.target.value = null;
         return;
@@ -146,7 +151,7 @@ const Videos = () => {
                   onChange={handleUpload}
                   className="hidden"
                 />
-                <p className="text-xs text-gray-500 mt-2 absolute -bottom-6 right-0">Only MP4 format supported</p>
+                <p className="text-xs text-gray-500 mt-2 absolute -bottom-6 right-0">MP4 format supported (Max 2GB)</p>
               </>
             )}
           </div>

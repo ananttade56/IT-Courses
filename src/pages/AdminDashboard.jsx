@@ -15,6 +15,7 @@ const AdminDashboard = () => {
   const [isStudentModalOpen, setIsStudentModalOpen] = useState(false);
   const [selectedCourseIds, setSelectedCourseIds] = useState([]);
   const [editingCourse, setEditingCourse] = useState(null);
+  const [studentToManage, setStudentToManage] = useState(null);
 
   const loadData = async () => {
     setLoading(true);

@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 const Header = () => {
   return (
     <section className="bg-gradient-to-br from-blue-50 via-white to-purple-50 pt-20 pb-16 overflow-hidden">
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
 
           {/* Left Content */}
@@ -81,8 +81,8 @@ const Header = () => {
             <div className="absolute top-0 right-32 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000"></div>
 
             {/* Image Frame */}
-            <div className="absolute top-0 right-0 w-full max-w-lg h-full bg-transparent flex flex-col items-center justify-end relative">
-              <img src="/asset/Student.png" alt="Students" className="w-full h-auto max-h-full object-contain relative z-10" />
+            <div className="absolute top-0 right-0 w-full h-full bg-transparent flex flex-col items-end justify-end">
+              <img src="/asset/Student.png" alt="Students" className="w-full sm:w-auto h-auto max-h-full object-contain relative z-10" />
 
               {/* Floating Badges */}
               <div className="absolute top-10 -left-16 z-20 bg-white px-4 py-3 rounded-lg shadow-xl border border-gray-100 hidden sm:flex items-center -rotate-2">

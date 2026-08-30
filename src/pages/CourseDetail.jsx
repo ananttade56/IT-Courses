@@ -49,7 +49,7 @@ const CourseDetail = () => {
     <div className="bg-gray-50">
       {/* Hero Section */}
       <div className="bg-[#1a1f36] py-20 border-b border-gray-700">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-12">
+        <div className="w-full mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-12">
           <div className="flex-1 text-white">
             <div className="inline-block px-3 py-1 bg-blue-600/20 text-blue-400 rounded-full text-sm font-semibold mb-6">
               {course.level || 'All Levels'}
@@ -93,7 +93,7 @@ const CourseDetail = () => {
       </div>
 
       {/* Main Content */}
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div className="w-full mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="flex flex-col lg:flex-row gap-12">
 
           <div className="flex-1 space-y-12">
