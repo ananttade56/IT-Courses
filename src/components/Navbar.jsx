@@ -5,12 +5,15 @@ import api from '../services/api';
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [role, setRole] = useState(localStorage.getItem('role'));
+  const [username, setUsername] = useState(localStorage.getItem('username'));
   const navigate = useNavigate();
 
   const handleLogout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('role');
+    localStorage.removeItem('username');
     setRole(null);
+    setUsername(null);
     window.dispatchEvent(new Event('auth-change'));
     navigate('/login');
   };
@@ -18,6 +21,7 @@ const Navbar = () => {
   useEffect(() => {
     const handleAuthChange = () => {
       setRole(localStorage.getItem('role'));
+      setUsername(localStorage.getItem('username'));
     };
     window.addEventListener('auth-change', handleAuthChange);
     window.addEventListener('storage', handleAuthChange);
@@ -68,9 +72,17 @@ const Navbar = () => {
               +91 8956083323
             </a>
             {role ? (
-              <button onClick={handleLogout} className="bg-red-600 text-white px-5 py-2 rounded-md text-sm font-semibold hover:bg-red-700 transition-colors shadow-md cursor-pointer">
-                Logout
-              </button>
+              <div className="flex items-center space-x-3">
+                {role === 'Admin' && (
+                  <Link to="/signup" className="bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-semibold hover:bg-blue-700 transition-colors shadow-md">
+                    Register User
+                  </Link>
+                )}
+                {username && <span className="text-white text-sm font-medium">Hi, {username}</span>}
+                <button onClick={handleLogout} className="bg-red-600 text-white px-5 py-2 rounded-md text-sm font-semibold hover:bg-red-700 transition-colors shadow-md cursor-pointer">
+                  Logout
+                </button>
+              </div>
             ) : (
               <>
                 <Link to="/login" className="text-white hover:text-blue-400 font-medium text-sm transition-colors">
@@ -122,9 +134,17 @@ const Navbar = () => {
               </a>
               <div className="flex flex-col space-y-2 px-3">
                 {role ? (
-                  <button onClick={() => { handleLogout(); setIsOpen(false); }} className="bg-red-600 text-white text-center w-full py-2.5 rounded-md text-base font-semibold hover:bg-red-700 transition-colors shadow-sm cursor-pointer">
-                    Logout
-                  </button>
+                  <div className="flex flex-col space-y-2">
+                    {role === 'Admin' && (
+                      <Link to="/signup" onClick={() => setIsOpen(false)} className="bg-blue-600 text-white text-center w-full py-2.5 rounded-md text-base font-semibold hover:bg-blue-700 transition-colors shadow-sm">
+                        Register User
+                      </Link>
+                    )}
+                    {username && <span className="text-center text-gray-800 font-medium py-1">Logged in as {username}</span>}
+                    <button onClick={() => { handleLogout(); setIsOpen(false); }} className="bg-red-600 text-white text-center w-full py-2.5 rounded-md text-base font-semibold hover:bg-red-700 transition-colors shadow-sm cursor-pointer">
+                      Logout
+                    </button>
+                  </div>
                 ) : (
                   <>
                     <Link to="/login" onClick={() => setIsOpen(false)} className="text-center w-full py-2.5 rounded-md text-base font-medium text-gray-700 bg-gray-50 hover:bg-gray-100 border border-gray-200 transition-colors">

@@ -30,8 +30,11 @@ export const fetchApprovedStudents = async () => {
   return response.data;
 };
 
-export const approveStudent = async (studentId, courseIds = []) => {
-  const response = await api.post(`/api/admin/approve-student/${studentId}`, { courseIds });
+export const approveStudent = async (studentId, courseIds = null, role = null) => {
+  const data = {};
+  if (courseIds !== null) data.courseIds = courseIds;
+  if (role !== null) data.role = role;
+  const response = await api.post(`/api/admin/approve-student/${studentId}`, data);
   return response.data;
 };
 

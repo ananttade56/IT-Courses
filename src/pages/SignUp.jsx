@@ -8,8 +8,10 @@ const SignUp = () => {
   const [courses, setCourses] = useState([]);
   const [selectedCourseIds, setSelectedCourseIds] = useState([]);
   const [error, setError] = useState('');
+  const [successMsg, setSuccessMsg] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const isAdmin = localStorage.getItem('role') === 'Admin';
 
   useEffect(() => {
     const fetchPublicCourses = async () => {
@@ -39,12 +41,19 @@ const SignUp = () => {
       setError('Passwords do not match');
       return;
     }
-    setError('');
-    setLoading(true);
-    try {
-      await signup(formData.username, formData.password, formData.role, formData.role === 'Student' ? selectedCourseIds : []);
-      navigate('/login');
-    } catch (err) {
+      setError('');
+      setSuccessMsg('');
+      setLoading(true);
+      try {
+        await signup(formData.username, formData.password, formData.role, formData.role === 'Student' ? selectedCourseIds : []);
+        if (isAdmin) {
+          setSuccessMsg(`User ${formData.username} registered successfully as ${formData.role}!`);
+          setFormData({ username: '', password: '', confirmPassword: '', role: 'Student' });
+          setSelectedCourseIds([]);
+        } else {
+          navigate('/login');
+        }
+      } catch (err) {
       setError(err.response?.data?.message || 'Registration failed. Please try again.');
     } finally {
       setLoading(false);
@@ -72,6 +81,11 @@ const SignUp = () => {
                 {error}
               </div>
             )}
+            {successMsg && (
+              <div className="bg-green-50 text-green-600 p-3 rounded-md text-sm border border-green-100">
+                {successMsg}
+              </div>
+            )}
             <div>
               <label htmlFor="username" className="sr-only">Username</label>
               <input
@@ -86,6 +100,7 @@ const SignUp = () => {
                 onChange={handleChange}
               />
             </div>
+
             <div>
               <label htmlFor="role" className="sr-only">Role</label>
               <select
@@ -97,8 +112,10 @@ const SignUp = () => {
                 onChange={handleChange}
               >
                 <option value="Student">Student</option>
+                {isAdmin && <option value="Teacher">Teacher</option>}
               </select>
             </div>
+
             <div>
               <label htmlFor="password" className="sr-only">Password</label>
               <input

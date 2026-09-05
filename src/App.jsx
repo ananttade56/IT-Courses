@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ProtectedRoute from './components/ProtectedRoute';
+import { UploadProvider } from './contexts/UploadContext';
+import GlobalUploadProgress from './components/GlobalUploadProgress';
 
 // Lazy loading page components for code splitting and performance
 const Home = lazy(() => import('./pages/Home'));
@@ -25,7 +27,8 @@ const PageLoader = () => (
 function App() {
   return (
     <Router>
-      <div className="min-h-screen flex flex-col font-sans bg-gray-50 overflow-x-hidden w-full">
+      <UploadProvider>
+        <div className="min-h-screen flex flex-col font-sans bg-gray-50 overflow-x-hidden w-full">
         <Navbar />
         <main className="flex-grow">
           <Suspense fallback={<PageLoader />}>
@@ -51,7 +54,9 @@ function App() {
           </Suspense>
         </main>
         <Footer />
+        <GlobalUploadProgress />
       </div>
+      </UploadProvider>
     </Router>
   );
 }

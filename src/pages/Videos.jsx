@@ -1,16 +1,16 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { FaUpload, FaTrash, FaPlay, FaTimes } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
-import { getVideos, uploadVideo, deleteVideo as apiDeleteVideo } from '../services/videoService';
+import { getVideos, deleteVideo as apiDeleteVideo } from '../services/videoService';
 import { fetchCourses } from '../services/adminService';
 import api from '../services/api'; // For getting baseURL
+import { useUpload } from '../contexts/UploadContext';
 
 const Videos = () => {
   const [videos, setVideos] = useState([]);
   const [courses, setCourses] = useState([]);
   const [selectedCourseId, setSelectedCourseId] = useState('');
-  const [uploading, setUploading] = useState(false);
-  const [uploadProgress, setUploadProgress] = useState(0);
+  const { isUploading, uploadProgress, startUpload } = useUpload();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [selectedVideo, setSelectedVideo] = useState(null);
@@ -70,18 +70,11 @@ const Videos = () => {
         e.target.value = null;
         return;
       }
-      setUploading(true);
-      setUploadProgress(0);
       setError('');
-      try {
-        await uploadVideo(selectedCourseId, file, file.name, 'Uploaded from frontend', (progress) => {
-          setUploadProgress(progress);
-        });
+
+      const success = await startUpload(selectedCourseId, file, file.name, 'Uploaded from frontend');
+      if (success) {
         await fetchVideos(selectedCourseId);
-      } catch (err) {
-        setError(err.response?.data?.message || 'Failed to upload video.');
-      } finally {
-        setUploading(false);
       }
     }
     // Reset file input so same file can be uploaded again if deleted
@@ -138,15 +131,15 @@ const Videos = () => {
               <>
                 <button
                   onClick={() => fileInputRef.current.click()}
-                  disabled={uploading}
+                  disabled={isUploading}
                   className="flex items-center space-x-2 bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors shadow-md disabled:opacity-50 whitespace-nowrap"
                 >
-                  {uploading ? (
+                  {isUploading ? (
                     <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
                   ) : (
                     <FaUpload />
                   )}
-                  <span>{uploading ? `Uploading ${uploadProgress}%...` : 'Upload Video'}</span>
+                  <span>{isUploading ? `Uploading ${uploadProgress}%...` : 'Upload Video'}</span>
                 </button>
                 <input
                   type="file"

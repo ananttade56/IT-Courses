@@ -20,6 +20,7 @@ const Login = () => {
       const data = await login(formData.username, formData.password);
       localStorage.setItem('token', data.token);
       localStorage.setItem('role', data.role);
+      if (data.username) localStorage.setItem('username', data.username);
       window.dispatchEvent(new Event('auth-change'));
       navigate('/');
     } catch (err) {
