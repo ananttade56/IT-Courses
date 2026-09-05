@@ -10,6 +10,7 @@ const Videos = () => {
   const [courses, setCourses] = useState([]);
   const [selectedCourseId, setSelectedCourseId] = useState('');
   const [uploading, setUploading] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [selectedVideo, setSelectedVideo] = useState(null);
@@ -70,9 +71,12 @@ const Videos = () => {
         return;
       }
       setUploading(true);
+      setUploadProgress(0);
       setError('');
       try {
-        await uploadVideo(selectedCourseId, file, file.name, 'Uploaded from frontend');
+        await uploadVideo(selectedCourseId, file, file.name, 'Uploaded from frontend', (progress) => {
+          setUploadProgress(progress);
+        });
         await fetchVideos(selectedCourseId);
       } catch (err) {
         setError(err.response?.data?.message || 'Failed to upload video.');
@@ -142,7 +146,7 @@ const Videos = () => {
                   ) : (
                     <FaUpload />
                   )}
-                  <span>{uploading ? 'Uploading...' : 'Upload Video'}</span>
+                  <span>{uploading ? `Uploading ${uploadProgress}%...` : 'Upload Video'}</span>
                 </button>
                 <input
                   type="file"
